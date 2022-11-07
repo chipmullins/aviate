@@ -1,1 +1,1 @@
-# aviate
+Aviate is a social networking platform for aviation personnel. It allows flight attendants, pilots, and ground crew that work for commercial airlines within North America to communicate and keep up with each other. Traditional social networks cater to the general population. Aviate is unique in that it allows ONLY those within the specified industry to join.
