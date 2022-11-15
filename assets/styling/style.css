@@ -1,0 +1,132 @@
+@font-face {
+	font-family: 'Orbitron-Regular';
+	src: url('../fonts/Orbitron-Regular.ttf');
+}
+
+body {
+	background-color: pink;
+	
+}
+.topBar {
+	width: 100%;
+	min-width: 1050px;
+	height: 40px;
+	background-color: #6F2232;
+	border-bottom: 0.25em solid #C3073F;
+	margin: 0 0 10px 0;
+	display: inline-flex;
+	position: fixed;
+}
+
+.logo a{
+	font-family: 'Orbitron-Regular', sans-serif;
+	margin-left: 10px;
+	font-size: 30;
+	postition: relative;
+	top: 9px;
+	color: #C3073F;
+	line-height: 30px;
+
+}
+a:hover {
+	text-decoration: none;
+}
+
+nav {
+	float: right;
+	right: 1px;
+	position: absolute;
+	margin: 10px;
+
+}
+nav a{
+	position: relative;
+	color: #fff;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+nav a:hover {
+	border-bottom: 3px solid  #C3073F;
+	color: #fff;
+}
+
+.wrapper {
+	margin: 0 auto;
+	top: 50px;
+	position: relative;
+	padding: 0 10px;
+	width: 75%;
+	min-width: 950px;
+}
+
+.column {
+	background-color: orange;  /*UPDATE THIS FUCKING SHIT. IT"S NOT SUPPOSED TO BE ORANGE GOD DAMN IT*/
+	padding: 10px;
+	border: 1px solid #D3D3D3;
+	border-radius: 5px;
+	box-shadow: 2px 2px 1px #D3D3D3;
+	z-index: -1;
+}
+
+.userDetails {
+	width: 250px;
+	float: left;
+	margin-bottom: 20px;
+	background-color: red;
+}
+
+.leftRightUserDetails {
+	width: 125px;
+	display: inline-block;
+	position: absolute;
+}
+
+.userDetails img {
+	height: 125px;
+	border-radius: 5px;
+	margin-right: 5px;
+}
+
+.mainFeed {
+	float: right;
+	width: 70%;
+	z-index: -1;
+	min-height: 160px;
+}
+
+.postForm {
+	width: 100%;
+}
+
+.postForm textarea {
+	width: 81%;
+	height: 60px;
+	border-radius: 5px;
+	margin-right: 5px;
+	border: 1px solid #D3D3D3;
+	font-size: 12px;
+	padding: 5px;
+}
+
+textarea:focus {
+	outline: 0;
+}
+
+.postForm input[type="submit"] {
+	width: 11%;
+	height: 60px;
+	border: none;
+	border-radius: 10px;
+	background-color: #C3073F;
+	font-family: 'Orbitron-Regular', sans-serif;
+	font-size: 90%;
+	position: absolute;
+	outline: 0;
+	margin: 0;
+}
+
+.postForm input[type="submit"]:active {
+
+	padding: 5px 4px 4px 5px;
+}

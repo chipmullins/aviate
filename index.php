@@ -1,20 +1,51 @@
 <?php
-require 'config/config.php';
-?>
+include("includes/header.php");
+include("includes/classes/User.php");
+include("includes/classes/Post.php");
 
-<html>
-	<head>
-		<title>Aviate</title>
-	</head>
 
-	<body>
-		<h1>Aviate is Coming Soon</h1>
-		<br>
-		<h2>Created by Chip Mullins</h2>
-		<h3>Expected to launch in December 2022</h3>
-		<p>This is a capstone project for Chip Mullins at Maryville University</p>
-		<br>
-		<h2>You can visit aviate.social/register.php to get a sneak peak at the registration form and progress</h2>
+
+if(isset($_POST['post'])){
+	$newPost = new Post($dbconnection, $loginStatus);
+	$newPost->createPost($_POST['postData'], 'none');
+}
+ ?>
+	<div class="userDetails column">
+		<a href="<?php echo $loginStatus; ?>"> <img src="<?php echo $user['profile_photo']; ?>"> </a>
+
+		<div class="leftRightUserDetails">
+
+			<a href="<?php echo $loginStatus; ?>">
+			<?php
+			echo $user['first_name'] . " " . $user['last_name'];
+
+			?>
+			</a>
+			<br>
+			<?php echo "Posts: " . $user['posts_quantity'] ."<br>";
+			echo "Likes: " . $user['like_quantity'];
+			?>
+		</div>
+
+
+	</div>
+	<div class="mainFeed column">
+		<form class="postForm" action="index.php" method="POST">
+			<textarea name="postData" id="post_text" placeholder="What do you want to post?"></textarea>
+			<input type="submit" name="post" id="postButton" value="Post">
+			<hr>
+
+		</form>
+
+		<?php 
+		$userObject = new User($dbconnection, $loginStatus);
+		echo $userObject->getFirstAndLastName();
+
+		?>
+	</div>
+
+	</div>
+
 	</body>
 
 
