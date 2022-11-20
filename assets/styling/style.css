@@ -4,7 +4,7 @@
 }
 
 body {
-	background-color: pink;
+	background-color: #fffffe;
 	
 }
 .topBar {
@@ -16,13 +16,14 @@ body {
 	margin: 0 0 10px 0;
 	display: inline-flex;
 	position: fixed;
+	z-index: 2;
 }
 
 .logo a{
 	font-family: 'Orbitron-Regular', sans-serif;
 	margin-left: 10px;
 	font-size: 30;
-	postition: relative;
+	position: relative;
 	top: 9px;
 	color: #C3073F;
 	line-height: 30px;
@@ -61,11 +62,11 @@ nav a:hover {
 }
 
 .column {
-	background-color: orange;  /*UPDATE THIS FUCKING SHIT. IT"S NOT SUPPOSED TO BE ORANGE GOD DAMN IT*/
+	background-color: #D3D3D3;  /*UPDATE COLOR*/
 	padding: 10px;
-	border: 1px solid #D3D3D3;
+	border: 1px solid #C3073F;
 	border-radius: 5px;
-	box-shadow: 2px 2px 1px #D3D3D3;
+	box-shadow: 2px 2px 1px #C3073F;
 	z-index: -1;
 }
 
@@ -73,7 +74,7 @@ nav a:hover {
 	width: 250px;
 	float: left;
 	margin-bottom: 20px;
-	background-color: red;
+	background-color: #D3D3D3;
 }
 
 .leftRightUserDetails {
@@ -129,4 +130,24 @@ textarea:focus {
 .postForm input[type="submit"]:active {
 
 	padding: 5px 4px 4px 5px;
+}
+
+.statusPost {
+	width: 96%;
+	font-size: 15px;
+	padding: 0px 5px;
+	min-height: 75px;
+}
+
+.postProfilePhoto {
+	float: left;
+	margin-right: 7px;
+}
+
+.postProfilePhoto img {
+	border-radius: 25px;
+}
+
+a {
+	color: #C3073F;
 }

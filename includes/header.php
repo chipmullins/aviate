@@ -60,7 +60,7 @@ else {
 
 				
 
-				<a href="#">
+				<a href="includes/handlers/logout.php">
 					<i class="fa fa-eject fa-lg" aria-hidden="true"></i>
 				</a>
 

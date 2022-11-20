@@ -8,7 +8,8 @@ include("includes/classes/Post.php");
 if(isset($_POST['post'])){
 	$newPost = new Post($dbconnection, $loginStatus);
 	$newPost->createPost($_POST['postData'], 'none');
-}
+	header("Location:index.php");
+}	
  ?>
 	<div class="userDetails column">
 		<a href="<?php echo $loginStatus; ?>"> <img src="<?php echo $user['profile_photo']; ?>"> </a>
@@ -38,8 +39,9 @@ if(isset($_POST['post'])){
 		</form>
 
 		<?php 
-		$userObject = new User($dbconnection, $loginStatus);
-		echo $userObject->getFirstAndLastName();
+		
+		$postObject = new Post($dbconnection, $loginStatus);
+		$postObject->getPosts();
 
 		?>
 	</div>
