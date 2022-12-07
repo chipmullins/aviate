@@ -1,121 +1,127 @@
-<?php
-
+<?php  
 require 'config/config.php';
-
-require 'includes/form_handlers/registration_handler.php';
+require 'includes/form_handlers/register_handler.php';
 require 'includes/form_handlers/login_handler.php';
-
 ?>
+
+
 <html>
 <head>
-
 	<title>Welcome to Aviate</title>
-	<link rel="stylesheet" type="text/css" href="assets/styling/login_styling.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/register_style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="assets/js/register.js"></script>
 </head>
 <body>
 
+	<?php  
 
-	<?php
-
-	if(isset($_POST['register_submit'])) {
+	if(isset($_POST['register_button'])) {
 		echo '
 		<script>
-		$(document).redy(function() {
-			$("#loginDiv").hide();
-			$("#regDiv").show();
 
-			})
+		$(document).ready(function() {
+			$("#first").hide();
+			$("#second").show();
+		});
+
 		</script>
 
 		';
 	}
 
 
-
 	?>
+
 	<div class="wrapper">
-		<div class="formData">
-			<div class="applicationHeader">
+
+		<div class="login_box">
+
+			<div class="login_header">
 				<h1>Aviate</h1>
-				Login or create a new account!
+				Login or register below!
 			</div>
+			<br>
+			<div id="first">
 
-			<div id="loginDiv">
 				<form action="register.php" method="POST">
-					<input type="email" name="login_emailAddress" placeholder="Email Address" value="<?php if(isset($_SESSION['login_emailAddress'])) {
-						echo $_SESSION['login_emailAddress'];
-					}
+					<input type="email" name="log_email" placeholder="Email Address" value="<?php 
+					if(isset($_SESSION['log_email'])) {
+						echo $_SESSION['log_email'];
+					} 
 					?>" required>
 					<br>
-					<input type="password" name="login_password" placeholder="Password">
+					<input type="password" name="log_password" placeholder="Password">
 					<br>
-					<?php if(in_array("Your login information was not correct.<br>", $errorCapture)) echo "Your login information was not correct.<br>"  ?>
-					<input type="submit" name="user_login" value="Login"><br>
+					<?php if(in_array("Email or password was incorrect<br>", $error_array)) echo  "Email or password was incorrect<br>"; ?>
+					<input type="submit" name="login_button" value="Login">
+					<br>
+					<a href="#" id="signup" class="signup">Need an account? Register here!</a>
 
-					<a href="#" id="register" class="register">New to Avite? Click here to create an account!</a>
+				</form>
 
+			</div>
+
+			<div id="second">
+
+				<form action="register.php" method="POST">
+					<input type="text" name="reg_fname" placeholder="First Name" value="<?php 
+					if(isset($_SESSION['reg_fname'])) {
+						echo $_SESSION['reg_fname'];
+					} 
+					?>" required>
+					<br>
+					<?php if(in_array("Your first name must be between 2 and 25 characters<br>", $error_array)) echo "Your first name must be between 2 and 25 characters<br>"; ?>
+					
 					
 
+
+					<input type="text" name="reg_lname" placeholder="Last Name" value="<?php 
+					if(isset($_SESSION['reg_lname'])) {
+						echo $_SESSION['reg_lname'];
+					} 
+					?>" required>
+					<br>
+					<?php if(in_array("Your last name must be between 2 and 25 characters<br>", $error_array)) echo "Your last name must be between 2 and 25 characters<br>"; ?>
+
+					<input type="email" name="reg_email" placeholder="Email" value="<?php 
+					if(isset($_SESSION['reg_email'])) {
+						echo $_SESSION['reg_email'];
+					} 
+					?>" required>
+					<br>
+
+					<input type="email" name="reg_email2" placeholder="Confirm Email" value="<?php 
+					if(isset($_SESSION['reg_email2'])) {
+						echo $_SESSION['reg_email2'];
+					} 
+					?>" required>
+					<br>
+					<?php if(in_array("Email already in use<br>", $error_array)) echo "Email already in use<br>"; 
+					else if(in_array("Invalid email format<br>", $error_array)) echo "Invalid email format<br>";
+					else if(in_array("Emails don't match<br>", $error_array)) echo "Emails don't match<br>"; ?>
+
+
+					<input type="password" name="reg_password" placeholder="Password" required>
+					<br>
+					<input type="password" name="reg_password2" placeholder="Confirm Password" required>
+					<br>
+					<?php if(in_array("Your passwords do not match<br>", $error_array)) echo "Your passwords do not match<br>"; 
+					else if(in_array("Your password can only contain english characters or numbers<br>", $error_array)) echo "Your password can only contain english characters or numbers<br>";
+					else if(in_array("Your password must be betwen 5 and 30 characters<br>", $error_array)) echo "Your password must be betwen 5 and 30 characters<br>"; ?>
+
+
+					<input type="submit" name="register_button" value="Register">
+					<br>
+
+					<?php if(in_array("<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>", $error_array)) echo "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>"; ?>
+					<a href="#" id="signin" class="signin">Already have an account? Click here to login!</a>
 				</form>
 			</div>
 
-
-
-			<div id="regDiv">
-				<form action="register.php" method="POST">
-					<input type="text" name="registration_firstName" placeholder="First Name"  value="<?php if(isset($_SESSION['registration_firstName'])) {
-						echo $_SESSION['registration_firstName'];
-					}
-					?>" required>
-					<br>
-					<?php if(in_array("Your first name must be at least 2 characters and no greater than 25<br>", $errorCapture)) echo "Your first name must be at least 2 characters and no greater than 25<br>"; ?>
-
-
-					<input type="text" name="registration_lastName" placeholder="Last Name" value="<?php if(isset($_SESSION['registration_lastName'])) {
-						echo $_SESSION['registration_lastName'];
-					}
-					?>" required>
-					<br>
-					<?php if(in_array("Your last name must be at least 2 characters and no greater than 25<br>", $errorCapture)) echo "Your last name must be at least 2 characters and no greater than 25<br>"; ?>
-
-					<input type="email" name="registration_emailAddress" placeholder="Email Address" value="<?php if(isset($_SESSION['registration_emailAddress'])) {
-						echo $_SESSION['registration_emailAddress'];
-					}
-					?>" required>
-					<br>
-
-					<input type="email" name="registration_confirmEmail" placeholder="Confirm Email Address" value="<?php if(isset($_SESSION['registration_confirmEmail'])) {
-						echo $_SESSION['registration_confirmEmail'];
-					}
-					?>" required>
-					<br>
-					<?php if(in_array("There is already an account with that email address.<br>", $errorCapture)) echo "There is already an account with that email address.<br>"; 
-					else if(in_array("The email addresses you entered do not match.<br>", $errorCapture)) echo "The email addresses you entered do not match.<br>"; 
-					else if(in_array("The email address you entered is not a valid format.<br>", $errorCapture)) echo "The email address you entered is not a valid format.<br>"; ?>
-
-					<input type="password" name="registration_password" placeholder="Password" required>
-					<br>
-					
-
-					<input type="password" name="registration_confirmPassword" placeholder="Confirm Password" required>
-					<br>
-					<?php if(in_array("Your password cannot contain any special characters.<br>", $errorCapture)) echo "Your password cannot contain any special characters.<br>"; 
-					else if(in_array("Your password must be between 5 and 30 characters.<br>", $errorCapture)) echo "Your password must be between 5 and 30 characters.<br>";
-					else if(in_array("The passwords you entered do not match.<br>", $errorCapture)) echo "The passwords you entered do not match.<br>"; ?>
-
-					<input type="submit" name="register_submit" value="Register">
-					<br>
-
-					<?php if(in_array("<span style='color: #14C800'>Account Created!</span><br>", $errorCapture)) echo "<span style='color: #14C800'>Account Created!</span><br>";?>
-					<a href="#" id="login" class="login">Already registered? Click here to create an account!</a>
-				</form>
-			</div>
 		</div>
+
 	</div>
-
-
 
 
 </body>
