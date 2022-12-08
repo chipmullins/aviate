@@ -14,8 +14,8 @@ else {
 	<?php
 		$user_obj = new User($con, $username);
 		foreach($user_obj->getFriendsList() as $friend) {
-			$friend_obj = new User($con, $friend);
-			echo "<a href='$friend'>
+			$friend_obj = new User($con, $friend); //returns friend
+			echo "<a href='$friend'>  
 					<img class='profilePicSmall' src='" . $friend_obj->getProfilePic() ."'>"
 					 . $friend_obj->getFirstAndLastName() . 
 				"</a>

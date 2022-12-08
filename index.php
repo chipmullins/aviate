@@ -25,10 +25,10 @@ if(isset($_POST['post'])){
 		if($uploadOk) {
 			
 			if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $imageName)) {
-				//image uploaded okay
+				//image upload successful
 			}
 			else {
-				//image did not upload
+				//Image upload failed
 				$uploadOk = 0;
 			}
 		}
@@ -116,69 +116,12 @@ if(isset($_POST['post'])){
 
 
 	<script>
-	//var userLoggedIn = '<?php echo $userLoggedIn; ?>';
-	//var inProgress = false;
+	
+	
 
 	$(document).ready(function() {
 
-		// inProgress = true;
-		// $('#loading').show();
-
-		// //Original ajax request for loading first posts 
-		// $.ajax({
-		// 	url: "includes/handlers/ajax_load_posts.php",
-		// 	type: "POST",
-		// 	data: "page=1&userLoggedIn=" + userLoggedIn,
-		// 	cache:false,
-
-		// 	success: function(data) {
-		// 		$('#loading').hide();
-		// 		$('.posts_area').html(data);
-		// 		inProgress = false;
-		// 	}
-		// });
-
-		// $(window).scroll(function() {
-		// //$('#load_more').on("click", function() {
-
-		// 	var height = $('.posts_area').height(); //Div containing posts
-		// 	var scroll_top = $(this).scrollTop();
-		// 	var page = $('.posts_area').find('.nextPage').val();
-		// 	var noMorePosts = $('.posts_area').find('.noMorePosts').val();
-
-		// 	//if ((document.body.scrollHeight == document.body.scrollTop + window.innerHeight) && noMorePosts == 'false') {
-		// 	//if (noMorePosts == 'false') {
-		// 	if($(window).scrollTop() > $('body').height() / 2 && noMorePosts == 'false') {
-
-		// 		if(inProgress) {
-		// 			return;
-		// 		}
-				
-		// 		inProgress = true;
-		// 		$('#loading').show();
-
-		// 		var ajaxReq = $.ajax({
-		// 			url: "includes/handlers/ajax_load_posts.php",
-		// 			type: "POST",
-		// 			data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
-		// 			cache:false,
-
-		// 			success: function(response) {
-		// 				$('.posts_area').find('.nextPage').remove(); //Removes current .nextpage 
-		// 				$('.posts_area').find('.noMorePosts').remove(); //Removes current .nextpage 
-		// 				$('.posts_area').find('.noMorePostsText').remove(); //Removes current .nextpage 
-
-		// 				$('#loading').hide();
-		// 				$('.posts_area').append(response);
-		// 				inProgress = false;
-		// 			}
-		// 		});
-
-		// 	} //End if 
-
-		// 	return false;
-
-		// }); //End (window).scroll(function())
+		
 
 
 	});
@@ -198,7 +141,7 @@ $(function(){
     	var bottomElement = $(".status_post").last();
     	var noMorePosts = $('.posts_area').find('.noMorePosts').val();
 
-        // isElementInViewport uses getBoundingClientRect(), which requires the HTML DOM object, not the jQuery object. The jQuery equivalent is using [0] as shown below.
+        // isElementInViewport uses getBoundingClientRect(),  requires the HTML DOM object. The jQuery equivalent is using [0] as shown below.
         if (isElementInView(bottomElement[0]) && noMorePosts == 'false') {
             loadPosts();
         }

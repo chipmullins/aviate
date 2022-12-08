@@ -26,7 +26,7 @@ include("includes/form_handlers/settings_handler.php");
 	<form action="settings.php" method="POST">
 		First Name: <input type="text" name="first_name" value="<?php echo $first_name; ?>" id="settings_input"><br>
 		Last Name: <input type="text" name="last_name" value="<?php echo $last_name; ?>" id="settings_input"><br>
-		Email: <input type="text" name="email" value="<?php echo $email; ?>" id="settings_input"><br>
+		Email Address: <input type="text" name="email" value="<?php echo $email; ?>" id="settings_input"><br>
 
 		<?php echo $message; ?>
 
@@ -37,7 +37,7 @@ include("includes/form_handlers/settings_handler.php");
 	<form action="settings.php" method="POST">
 		Old Password: <input type="password" name="old_password" id="settings_input"><br>
 		New Password: <input type="password" name="new_password_1" id="settings_input"><br>
-		New Password Again: <input type="password" name="new_password_2" id="settings_input"><br>
+		Confirm New Password: <input type="password" name="new_password_2" id="settings_input"><br>
 
 		<?php echo $password_message; ?>
 

@@ -4,14 +4,14 @@
 	include("includes/classes/Post.php");
 	include("includes/classes/Notification.php");
 
-	if (isset($_SESSION['username'])) {
+	if (isset($_SESSION['username'])) {  //if user is logged in
 		$userLoggedIn = $_SESSION['username'];
 		$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
 		$user = mysqli_fetch_array($user_details_query);
 
 	}
 	else {
-		header("Location: register.php");
+		header("Location: register.php"); //if user is not logged in
 	}
 
 	?>
@@ -44,7 +44,7 @@
 	</script>
 
 	<?php  
-	//Get id of post
+	//Gets post ID
 	if(isset($_GET['post_id'])) {
 		$post_id = $_GET['post_id'];
 	}
@@ -53,7 +53,7 @@
 	$row = mysqli_fetch_array($user_query);
 
 	$posted_to = $row['added_by'];
-	$user_to = $row['user_to'];
+	$user_to = $row['user_to'];  //Gets the destination of the user
 
 	if(isset($_POST['postComment' . $post_id])) {
 		$post_body = $_POST['post_body'];
@@ -191,7 +191,7 @@
 		}
 	}
 	else {
-		echo "<center><br><br>No Comments to Show!</center>";
+		echo "<center><br><br>No comments</center>";
 	}
 
 	?>

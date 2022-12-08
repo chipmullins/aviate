@@ -26,10 +26,10 @@ else {
 
 
 
-		//If query contains an underscore, assume user is searching for usernames
+		//If contains an underscore, assume searching for usernames
 		if($type == "username") 
 			$usersReturnedQuery = mysqli_query($con, "SELECT * FROM users WHERE username LIKE '$query%' AND user_closed='no' LIMIT 8");
-		//If there are two words, assume they are first and last names respectively
+		//If two words, assume first and last names respectively
 		else {
 
 			$names = explode(" ", $query);
@@ -43,7 +43,7 @@ else {
 				$usersReturnedQuery = mysqli_query($con, "SELECT * FROM users WHERE (first_name LIKE '$names[0]%' OR last_name LIKE '$names[0]%') AND user_closed='no'");
 		}
 
-		//Check if results were found 
+		//Check results 
 		if(mysqli_num_rows($usersReturnedQuery) == 0)
 			echo "We can't find anyone with a " . $type . " like: " .$query;
 		else 
@@ -120,7 +120,7 @@ else {
 				</div>
 				<hr id='search_hr'>";
 
-		} //End while
+		} //End while loop
 	}
 
 

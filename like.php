@@ -72,7 +72,7 @@
 		$insert_user = mysqli_query($con, "DELETE FROM likes WHERE username='$userLoggedIn' AND post_id='$post_id'");
 	}
 
-	//Check for previous likes
+	//Check previous likes
 	$check_query = mysqli_query($con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$post_id'");
 	$num_rows = mysqli_num_rows($check_query);
 

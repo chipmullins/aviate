@@ -39,7 +39,7 @@ require 'includes/form_handlers/login_handler.php';
 
 			<div class="login_header">
 				<h1>Aviate</h1>
-				Login or register below!
+				Login or create an account!
 			</div>
 			<br>
 			<div id="first">
@@ -84,14 +84,14 @@ require 'includes/form_handlers/login_handler.php';
 					<br>
 					<?php if(in_array("Your last name must be between 2 and 25 characters<br>", $error_array)) echo "Your last name must be between 2 and 25 characters<br>"; ?>
 
-					<input type="email" name="reg_email" placeholder="Email" value="<?php 
+					<input type="email" name="reg_email" placeholder="Email Address" value="<?php 
 					if(isset($_SESSION['reg_email'])) {
 						echo $_SESSION['reg_email'];
 					} 
 					?>" required>
 					<br>
 
-					<input type="email" name="reg_email2" placeholder="Confirm Email" value="<?php 
+					<input type="email" name="reg_email2" placeholder="Confirm Email Address" value="<?php 
 					if(isset($_SESSION['reg_email2'])) {
 						echo $_SESSION['reg_email2'];
 					} 
@@ -111,11 +111,11 @@ require 'includes/form_handlers/login_handler.php';
 					else if(in_array("Your password must be betwen 5 and 30 characters<br>", $error_array)) echo "Your password must be betwen 5 and 30 characters<br>"; ?>
 
 
-					<input type="submit" name="register_button" value="Register">
+					<input type="submit" name="register_button" value="Create Account">
 					<br>
 
 					<?php if(in_array("<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>", $error_array)) echo "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>"; ?>
-					<a href="#" id="signin" class="signin">Already have an account? Click here to login!</a>
+					<a href="#" id="signin" class="signin">Already registered? Click here!</a>
 				</form>
 			</div>
 

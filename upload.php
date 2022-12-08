@@ -7,10 +7,10 @@ $result_path = "";
 $msg = "";
 
 /***********************************************************
-	0 - Remove The Temp image if it exists
+	0 - Remove The Temp 
 ***********************************************************/
 	if (!isset($_POST['x']) && !isset($_FILES['image']['name']) ){
-		//Delete users temp image
+		//Delete user temp 
 			$temppath = 'assets/images/profile_pics/'.$profile_id.'_temp.jpeg';
 			if (file_exists ($temppath)){ @unlink($temppath); }
 	} 
@@ -18,16 +18,16 @@ $msg = "";
 
 if(isset($_FILES['image']['name'])){	
 /***********************************************************
-	1 - Upload Original Image To Server
+	1 - Upload Original 
 ***********************************************************/	
 	//Get Name | Size | Temp Location		    
 		$ImageName = $_FILES['image']['name'];
 		$ImageSize = $_FILES['image']['size'];
 		$ImageTempName = $_FILES['image']['tmp_name'];
-	//Get File Ext   
+	//Get File    
 		$ImageType = @explode('/', $_FILES['image']['type']);
 		$type = $ImageType[1]; //file type	
-	//Set Upload directory    
+	//Set directory    
 		$uploaddir = $_SERVER['DOCUMENT_ROOT'].'/assets/images/profile_pics';
 	//Set File name	
 		$file_temp_name = $profile_id.'_original.'.md5(time()).'n'.$type; //the temp file name
@@ -41,8 +41,8 @@ if(isset($_FILES['image']['name'])){
 		if (!$move) { 
 			die ('File didnt upload');
 		} else { 
-			$imgSrc= "assets/images/profile_pics/".$file_name; // the image to display in crop area
-			$msg= "Upload Complete!";  	//message to page
+			$imgSrc= "assets/images/profile_pics/".$file_name; // Image to display
+			$msg= "Upload Complete!";  	//Sets the message to show upload complete
 			$src = $file_name;	 		//the file name to post from cropping form to the resize		
 		} 
 
@@ -55,9 +55,9 @@ if(isset($_FILES['image']['name'])){
 			$original_width = $original_size[0];
 			$original_height = $original_size[1];	
 		// Specify The new size
-			$main_width = 500; // set the width of the image
-			$main_height = $original_height / ($original_width / $main_width);	// this sets the height in ratio									
-		//create new image using correct php func			
+			$main_width = 500; // Sets width
+			$main_height = $original_height / ($original_width / $main_width);	// Set height									
+		//Create new image			
 			if($_FILES["image"]["type"] == "image/gif"){
 				$src2 = imagecreatefromgif($fullpath);
 			}elseif($_FILES["image"]["type"] == "image/jpeg" || $_FILES["image"]["type"] == "image/pjpeg"){
@@ -67,58 +67,58 @@ if(isset($_FILES['image']['name'])){
 			}else{ 
 				$msg .= "There was an error uploading the file. Please upload a .jpg, .gif or .png file. <br />";
 			}
-		//create the new resized image
+		//Create resized image
 			$main = imagecreatetruecolor($main_width,$main_height);
 			imagecopyresampled($main,$src2,0, 0, 0, 0,$main_width,$main_height,$original_width,$original_height);
-		//upload new version
+		//Upload new
 			$main_temp = $fullpath_2;
 			imagejpeg($main, $main_temp, 90);
 			chmod($main_temp,0777);
-		//free up memory
+		//Free up storage
 			imagedestroy($src2);
 			imagedestroy($main);
-			//imagedestroy($fullpath);
-			@ unlink($fullpath); // delete the original upload					
+		
+			@ unlink($fullpath); // delete  original					
 									
 }//ADD Image 	
 
 /***********************************************************
-	3- Cropping & Converting The Image To Jpg
+	3- Crop and Convert Image to JPEG
 ***********************************************************/
 if (isset($_POST['x'])){
 	
-	//the file type posted
+	//File Type
 		$type = $_POST['type'];	
-	//the image src
+	//Image Source
 		$src = 'assets/images/profile_pics/'.$_POST['src'];	
 		$finalname = $profile_id.md5(time());	
 	
 	if($type == 'jpg' || $type == 'jpeg' || $type == 'JPG' || $type == 'JPEG'){	
 	
-		//the target dimensions 150x150
+		//150x150 is preferred size
 			$targ_w = $targ_h = 150;
-		//quality of the output
+		//jpeg quality
 			$jpeg_quality = 90;
-		//create a cropped copy of the image
+		//Creates cropped image
 			$img_r = imagecreatefromjpeg($src);
 			$dst_r = imagecreatetruecolor( $targ_w, $targ_h );
 			imagecopyresampled($dst_r,$img_r,0,0,$_POST['x'],$_POST['y'],
 			$targ_w,$targ_h,$_POST['w'],$_POST['h']);
-		//save the new cropped version
+		//Saves cropped image
 			imagejpeg($dst_r, "assets/images/profile_pics/".$finalname."n.jpeg", 90); 	
 			 		
 	}else if($type == 'png' || $type == 'PNG'){
 		
-		//the target dimensions 150x150
+		//150x150 preferred size
 			$targ_w = $targ_h = 150;
-		//quality of the output
+		//Sets jpeg quality to 90
 			$jpeg_quality = 90;
-		//create a cropped copy of the image
+		//Create cropped image
 			$img_r = imagecreatefrompng($src);
 			$dst_r = imagecreatetruecolor( $targ_w, $targ_h );		
 			imagecopyresampled($dst_r,$img_r,0,0,$_POST['x'],$_POST['y'],
 			$targ_w,$targ_h,$_POST['w'],$_POST['h']);
-		//save the new cropped version
+		//Save cropped image
 			imagejpeg($dst_r, "assets/images/profile_pics/".$finalname."n.jpeg", 90); 	
 						
 	}else if($type == 'gif' || $type == 'GIF'){
@@ -136,15 +136,15 @@ if (isset($_POST['x'])){
 			imagejpeg($dst_r, "assets/images/profile_pics/".$finalname."n.jpeg", 90); 	
 		
 	}
-		//free up memory
-			imagedestroy($img_r); // free up memory
-			imagedestroy($dst_r); //free up memory
-			@ unlink($src); // delete the original upload					
+		//Clears up storage
+			imagedestroy($img_r); // Clear Storage
+			imagedestroy($dst_r); //Clear Storage
+			@ unlink($src); // Removes original					
 		
-		//return cropped image to page	
+		//return cropped image	
 		$result_path ="assets/images/profile_pics/".$finalname."n.jpeg";
 
-		//Insert image into database
+		//Inserts image into database
 		$insert_pic_query = mysqli_query($con, "UPDATE users SET profile_pic='$result_path' WHERE username='$userLoggedIn'");
 		header("Location: ".$userLoggedIn);
 														
@@ -210,7 +210,7 @@ if (isset($_POST['x'])){
 	            </form>
 	        </div>            
 	            
-	    </div><!-- CroppingContainer -->
+	    </div><!-- Crop Container -->
 	<?php 
 	} ?>
 </div>
